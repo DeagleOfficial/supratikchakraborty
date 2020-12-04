@@ -429,3 +429,7 @@ html {
     padding: 10px;
     border-radius: 50px;
 }
+
+.field {
+    text-align: center;
+}
