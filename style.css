@@ -71,6 +71,9 @@ html {
     width: 200px;
 }
 
+.navlinks a {
+    margin-bottom: 10px;
+}
 #experience h2 {
     text-align: center;
     font-weight: bold;
