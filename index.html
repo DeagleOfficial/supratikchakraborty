@@ -284,11 +284,11 @@
         <div class="container" id="form-container">
             <form name = "contact" method="POST" data-netlify = "true" class="form" id = "form">
                 <div class="section1 col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                    <span><input class="input" type = "text" id = "name" placeholder="Name" required></span>
-                    <span><input class="input" type = "email" id = "email" placeholder="Email" required></span>
-                    <span><input class="input" type = "text" id = "company" placeholder="Company"></span>
+                    <span><input name = "name" class="input" type = "text" id = "name" placeholder="Name" required></span>
+                    <span><input name = "email" class="input" type = "email" id = "email" placeholder="Email" required></span>
+                    <span><input name = "company" class="input" type = "text" id = "company" placeholder="Company"></span>
                 </div>
-                <span class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><textarea class="input" type="text" id = "message" placeholder="Message" required></textarea></span>
+                <span class="col-lg-6 col-md-6 col-sm-6 col-xs-12"><textarea name = "message" class="input" type="text" id = "message" placeholder="Message" required></textarea></span>
                 <span  id = "submit">
                     <input class = "input" id = "submit" type = "submit" value = "Send Message">
                 </span>
