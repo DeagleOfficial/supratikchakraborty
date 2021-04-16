@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supratik Chakraborty</title>
+    <link rel="icon" href="S.svg">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href = "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> 
+  <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/brands.js" integrity="sha384-sCI3dTBIJuqT6AwL++zH7qL8ZdKaHpxU43dDt9SyOzimtQ9eyRhkG3B7KMl6AO19" crossorigin="anonymous"></script>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+  <link rel = "stylesheet" href = "blogs.css">
+</head>
+<body>
+    <h1><b>Supratik Chakraborty: Blog</b></h1>
+    <div class="container topic">
+        <h3><b>Skin Cancer Detection and Lesion Classification using Multi-Convolutional Neural Networks</b></h3>
+        <p align = "center">
+            <img src = "cancer.jpg" width = "100%">
+        </p>
+        <p>
+            The problem statement points out a requirement for an Image Processing and Deep Learning solution to help Doctors and surgeons to identify the associated allergies from captured images of skin, predict the probability of skin cancer, and suggest remedies to prevent further damage.
+        </p>
+        <p>
+            My team at University presents a solution to the above problem in the form of two independent Convolutional Neural Network (CNN) models, for Classification of Types of Skin Lesions and associated allergies, and for the Prediction of Probability of Skin cancer and its type, respectively. A Convolutional Neural Network (ConvNet/CNN) is a Deep Learning algorithm which can take in an input image, assign importance (learnable weights and biases) to various aspects/objects in the image and be able to differentiate one from the other. The pre-processing required in a ConvNet is much lower as compared to other classification algorithms. While in primitive methods filters are hand-engineered, with enough training, ConvNets have the ability to learn these filters/characteristics.
+        </p>
+        <div id = "cancerdiv-more" class = "topic-more">
+        <hr>
+
+        <p>
+            <h4><b>Predicting the Probability of Skin Cancer</b></h4>
+        </p>
+        <p>The Model Architecture used for Predicting probability of Skin Cancer was ResNet50(Residual Network with 50 Layers) + 3 Convolutional Layers. ResNet50 eliminates the Vanishing Gradient problem.</p>
+        <p><h4>The Vanishing Gradient</h4> As the gradient is backpropagated to earlier layers, repeated multiplication may make the gradient extremely small. As a result, as the network goes deeper, its performance gets saturated or even starts degrading rapidly. The idea is if that if we take a ‘shallow’ network and just stack on more layers to create a deeper network, the performance of the deeper network should be at least as good as the shallow network as the deeper network could learn the exact shallow network by setting the new stacked layers to identity layers (in reality we know this is probably highly unlikely to happen using no architectural priors or current optimization methods). It was observed that this was not the case and that training error sometimes got worse when more layers were stacked on top of a shallower model. As a solution, ResNet50 introduces the concept of skip connections which are used in deep residual layers to allow the network to learn deviations from the identity layer, hence the term residual, residual here referring to difference from the identity.</p>
+        <p>In general, in a deep convolutional neural network, several layers are stacked and are trained to the task at hand. The network learns several low/mid/high level features at the end of its layers. In residual learning, instead of trying to learn some features, we try to learn some residual. Residual can be simply understood as subtraction of feature learned from input of that layer. ResNet does this using shortcut connections or skip connections (directly connecting input of nth layer to some (n+x)th layer). It has proved that training this form of networks resolves the problem of degrading accuracy.</p>
+        <p>
+            <h4>Datasets used</h4>
+            <p>The model was trained using Skin Cancer ISIC Dataset, which is a large collection of 3297 images labelled as Benign or Malignant cancer.</p>
+            <a href = "https://www.kaggle.com/fanconic/skin-cancer-malignant-vs-benign">Skin Cancer ISIC Dataset</a>
+        </p>
+        <p>
+            <h4>Training and Testing Results</h4>
+            ResNet50 clearly gives a very high accuracy when tested against images. The model we trained for detecting Benign/Malignant Cancer gave us a Training accuracy of 92%, and Test accuracy of 85%. Hence, the accuracy itself proves that this architecture of CNN is best suited for this classification. The accuracy is speculated to be further improved to 95%+ with access to greater computing power and better GPUs, more training images, and more time to train the model by increasing the number of epochs.
+        </p>
+        <hr>
+        <p>
+            <h4><b>Detection and Classification of Skin Lesions and associated allergies</b></h4>
+            <p>The model architecture used is DenseNet169 (Densely Connected Convolutional Network) + 6 Convolutional layers.</p>
+            <p>CNN architecture is used for this prediction model as well. We found that while ResNet50 gave excellent results with predicting if the cancer is Benign or Malignant(that is, when the model had 2 classes to predict from), it didn’t work so well when it had 7 classes to classify from(i.e. the above listed 7 types of Skin Lesions). Other neural network architectures underperformed as well, as the number of classes had increased. After experimenting with more types of Residual Network architectures(like ResNet101, ResNet152), other convolutional neural network architectures like VGG16, VGG19, MobileNet, InceptionV3, and DenseNet121, we found that the following model gave the best accuracy: DenseNet169 + 6 convolutional layers.</p>
+        </p>
+        <p>
+            <h4>Advantages of using DenseNet architecture</h4>
+            The problems arise with CNNs when they go deeper. This is because the path for information from the input layer until the output layer (and for the gradient in the opposite direction) becomes so big, that they can get vanished before reaching the other side (that is, the vanishing gradient problem, again).<br><br>
+DenseNets simplify the connectivity pattern between layers. This architecture solves the problem ensuring maximum information (and gradient) flow. To do it, it simply connects every layer directly with each other. Instead of drawing representational power from extremely deep or wide architectures, DenseNets exploit the potential of the network through feature reuse. Furthermore, some variations of ResNets have proven that many layers are barely contributing and can be dropped. In fact, the number of parameters of ResNets are big because every layer has its weights to learn. Instead, DenseNets layers are very narrow (e.g. 12 filters), and they just add a small set of new feature-maps.
+        </p>
+        <p>
+            <h4>Datasets used</h4>
+            <p>The model was trained using HAM10000 Dataset, which is A large collection of multi-source dermatoscopic images of common pigmented skin lesions, containing 10000 images with 7 class types. </p>
+            <a href = "https://www.kaggle.com/kmader/skin-cancer-mnist-ham10000">HAM10000 Dataset</a>
+        </p>
+        <p>
+            <h4>Training and Testing Results</h4>
+            After very rigorous testing with a number of models, and adjusting a number of hyperparameters of each of those models, using varying number of epochs, testing with different loss functions, learning rates, adding a varying number of convolutional layers after the model, using DenseNet169 as the base model, we found the best accuracy.
+
+The modified architecture gave a Train accuracy of 84% and a Testing accuracy of 71%, which is speculated to increase to ~92% with access to greater computational power, better GPUs, bigger training datasets, and more training time.
+        </p>
+        <hr>
+        <p>
+            <h4><b>System architecture for Web Application</b></h4>
+            The Backend for the System has been developed using Flask. The Flask Server pre-processes the received image data, procures a prediction using the saved models and labels the predictions into user-understandable terminology. The output is parsed into JSON data and sent to the Request source. 
+        </p>
+        <img id = "architecture" src = "system.jpeg">
+        <hr>
+
+        <p>
+            <h4><b>Optimised Model Server Communication</b></h4>
+            If we ran the models every time an image required to be processed and classified, it would render the System extremely inefficient, cause latency of an unacceptable magnitude, and increase the susceptibility of Server to crashes, resulting in an overall unpleasant User experience. Instead of running the models every time, the trained models with the tuned weights were saved into an H5 file, allowing them to be harnessed at any time without having to re-train. This makes the whole process much faster, and makes the System efficient.
+        </p>
+
+        <p>
+            <h4><b>Frontend and UI</b></h4>
+            The Front end of the System was developed using React JS and Bootstrap. The user can navigate through it's friendly UI easily and upload a picture of the affected area of the patient's Skin anomaly. The React app sends the image data to the backend with an HTTP POST request and receives the JSON data containing the prediction as response. Since the bulk of the System (Flask server & Models) does not run on the User's machine, the App is fast, lightweight and fluid to use.
+        </p>
+        </div>
+        <button id = "cancer-more" class = "btn moreless" onclick= myfunc(this.id)>Read more</button>
+    </div>
+
+    <div class="container topic">
+        <h3><b>Analysis of Supervised Learning Algorithms: Linear Regression</b></h3>
+        <p align = "center">
+            <img src = "prostate.jpeg" width = "100%">
+        </p>
+        <p>
+            Linear Regression is an algorithm used for calculated prediction of continuous and labelled data.<br>
+            The idea is to fit a Regression line to a plot of \(y\) vs \(x\) where \(y =\) dependant variable (Target value). 
+        </p><hr>
+        <h4><b>Finding the equation of a Regression Line</b></h4>
+        <p>Regression line passes through \(\overline{x}\), \(\overline{y}\)</p>
+        <p>
+            Assuming \(y = mx + c\) for regression line,
+        </p>
+
+        <div id = "prostatediv-more" class = "topic-more">
+        <p>
+            Calculate \(m\) using <span style = "font-size: 1.5em;">\({\sum(y - \overline{y})(x - \overline{x})} \over {\sum(x - \overline{x})}\)</span>
+        </p>
+        <p>Calculate \(c\) from \(y = mx + c\) using mean values of \(x\) and \(y\) and value of \(m\). [For example, \(y = 0.4 x + 2\)]</p><hr>
+        <h4><b>Mean Square Error</b></h4>
+        <p>Mean Square Error refers to the difference between the actual values and predicted values.</p>
+        <p>Mean Square Error is calculated for different values of m and the m with least error is selected. The equation obtained describes the line of best fit.</p><hr>
+
+        <h4><b>Measuring Goodness of Fit</b></h4>
+        <p>Goodness of Fit is measured using the <b>R Square Rule</b>.</p>
+        <p>The R Square Rule is a Statistical measure of the closeness of data to the fitted Regression line, also called the <b>Coefficient of Determination</b>.</p>
+        <p><span style = "font-size: 1.5em;">\( {\sum (y_{p} - \overline{y})^2} \over {\sum (y - \overline{y})^2} \)</span></p><hr>
+        <p><b>Larger Values of \( R^2 \)</b> \( \Rightarrow \)Larger Values of \( R^2 \) imply that the values are close to the Regression line.</p>
+        <p><b>Smaller Values of \( R^2 \)</b> \( \Rightarrow \)Smaller Values of \( R^2 \) imply that the values are far away compared to the Regression line. From smaller values of \( R^2 \), it can also concluded that too many outliers are present.</p>
+        <p><b>Note:</b> In certain cases, such as prediction of Human Behaviour, small values of \( R^2 \) are expected.</p>
+        </div>
+        <button id = "prostate-more" class = "btn moreless" onclick= myfunc(this.id)>Read more</button>
+    </div>
+
+    <div class="container topic">
+        <h3><b>Kadane's algorithm for Sub-array with maximum sum of a given array</b></h3>
+        <p align = "center">
+            <img src = "kadanes.jpeg" width = "100%">
+        </p>
+        <p>Kadan'es algorithm can be used to find the maximum sub-array sum for a given array.</p>
+        <p>For Example, \( \{-1, 2, 4, -3, 5, 2, -5, 2\} \)</p>
+        <p>The sub-array having maximum sum is the following:</p>
+        <p>\( \{ 2, 4, -3, 5, 2 \} \) with \( sum = 10 \)</p><hr>
+        <p>
+            The idea around the algorithm, is to calculate, for each position \(i\), the maximum sum of a sub-array that ends in that position. Having done this, the subsuquent problem becomes the maximum of those sums.
+        </p>
+
+        <div id = "kadanesdiv-more" class = "topic-more">
+        <p>For this sub-problem at position \(i\), there are two possibilities:</p>
+        <p>
+            <ul>
+                <li>The sub-array only contains the element at \(i\).</li>
+                <li>The sub-array consists of an array ending at \( (i-1) \) followed by an element ending at \(i\).</li>
+            </ul>
+        </p><hr>
+        <h4><b>Time complexity</b></h4>
+        <p>Kadane's algorithm is linear in nature requiring a single traversal of the given array. The Time compexity of Kadane's algorithm is <b>O(N)</b>.</p><hr>
+        <h4><b>implementation of Kadane's algorithm</b></h4>
+        <pre class = "prettyprint" style = "font-family: monospace;">
+int maxSubArraySum(int arr[], int n) {
+    int sum = 0, best = 0;
+    for (int i=0; i&it;n; i++) {
+        sum = max(arr[i], sum + arr[i]); //1
+        best = max(best, sum); //2
+    }
+    return best;
+}       </pre><hr>
+        <p>\(1 \Rightarrow \) Calculates maximum sub-array sum of the sub-array ending at \(i\).</p>
+        <p>\(2 \Rightarrow \) Calculates the best possible sum of all sub-array sums.</p><hr>
+        <h4><b>Walkthrough for a Test Case</b></h4>
+        <p>For Example, take \( \{ -1, 2, 4, -3, 5, 2, -5, 2 \}\)</p>
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col"><b>i</b></th>
+                <th scope="col"><b>sum</b></th>
+                <th scope="col"><b>best</b></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>0</td>
+                <td>-1</td>
+                <td>0</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>1</td>
+                <td>2</td>
+                <td>2</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>2</td>
+                <td>6</td>
+                <td>6</td>
+              </tr>
+              <tr>
+                <th scope="row">4</th>
+                <td>3</td>
+                <td>3</td>
+                <td>6</td>
+              </tr>
+              <tr>
+                <th scope="row">5</th>
+                <td>4</td>
+                <td>8</td>
+                <td>8</td>
+              </tr>
+              <tr>
+                <th scope="row">6</th>
+                <td>5</td>
+                <td>10</td>
+                <td>10</td>
+              </tr>
+              <tr>
+                <th scope="row">7</th>
+                <td>6</td>
+                <td>5</td>
+                <td>10</td>
+              </tr>
+              <tr>
+                <th scope="row">8</th>
+                <td>7</td>
+                <td>7</td>
+                <td>10</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>Therefore, the <b>Largest Sub-array Sum</b> is <b>10</b>.</p>
+          </div>
+          <button id = "kadanes-more" class = "btn moreless" onclick= myfunc(this.id)>Read more</button>
+          </div>
+</body>
+
+
+    <script>
+        myfunc = (id) => {
+            console.log(id)
+            btn = document.getElementById(id)
+            if (id == "cancer-more") {
+                more = document.getElementById("cancerdiv-more")
+            
+
+                if (btn.innerHTML == "Read more") {
+                    more.style.display = "block"
+                    btn.innerHTML = "Read less"
+                }
+                else {
+                    more.style.display = "none"
+                    btn.innerHTML = "Read more"
+                }
+            }
+
+            if (id == "prostate-more") {
+                more = document.getElementById("prostatediv-more")
+            
+
+                if (btn.innerHTML == "Read more") {
+                    more.style.display = "block"
+                    btn.innerHTML = "Read less"
+                }
+                else {
+                    more.style.display = "none"
+                    btn.innerHTML = "Read more"
+                }
+            }
+
+            if (id == "kadanes-more") {
+                more = document.getElementById("kadanesdiv-more")
+            
+
+                if (btn.innerHTML == "Read more") {
+                    more.style.display = "block"
+                    btn.innerHTML = "Read less"
+                }
+                else {
+                    more.style.display = "none"
+                    btn.innerHTML = "Read more"
+                }
+            }
+
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap'); 
+body {
+    font-family: 'Montserrat', 'Times New Roman', Times, serif;
+    padding: 0px;
+    margin: 0px;
+} 
+
+body {
+    margin: 20px;
+    padding: 20px;
+    background-color: #EFF0F4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    text-align: center;
+}
+.topic {
+    box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.15),
+    -4px -4px 6px 0 rgba(255, 255, 255, 0.5);
+    border-radius: 30px;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.topic-more {
+    display: none;
+}
+
+a {
+    color: rgb(43, 131, 202);
+    font-weight: 800;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+    outline: none;
+}
+
+#architecture {
+    width: 500px;
+    max-width: 100%;
+}
+
+.moreless{
+    background-color:#e7e8eb;
+    color:rgb(43, 131, 202);
+    font-weight: 700;
+    outline:none;
+    border: none;
+}
+
+#prostate-more, #cancer-more, #kadanes-more {
+    outline: none;
+}
+
+pre {
+    border: none;
+}
+
