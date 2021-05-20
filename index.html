@@ -19,8 +19,12 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> 
   <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/brands.js" integrity="sha384-sCI3dTBIJuqT6AwL++zH7qL8ZdKaHpxU43dDt9SyOzimtQ9eyRhkG3B7KMl6AO19" crossorigin="anonymous"></script>
-  <link rel = "stylesheet" href = "style.css">
-  <!-- <script src = "main.js"></script> -->
+
+  <link href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
+  <link id = "my-link" rel = "stylesheet" href = "style.css">
+  <script src = "script.js"></script>
 </head>
 <body>
     <div class = "container" id = "landing">
@@ -50,7 +54,20 @@
             </div>
         </span>
 
-        <h2 class = "col-lg-8 col-md-12 col-sm-12">Hello world, I am Supratik Chakraborty</h2>
+        <div align = "right" class="toggle-switch" tabindex="0">
+            <input type="checkbox" name="my_checkbox" value="yes" id="checkbox-id" onClick=darkMode() />
+            <label for="checkbox-id">
+              <div class="area" aria-hidden="true">
+                <div class="background">
+                  <div class="handle"></div>
+                </div>
+              </div>
+            </label>
+          </div><br>
+        <h2 class = "col-lg-8 col-md-12 col-sm-12">
+            Hello world, I am Supratik Chakraborty
+        </h2>
+
         <p>Undergraduate CS Student | Web Developer | Competitive Programmer | AI Enthusiast</p><br>
         <p>I am a 20 year old undergraduate B. Tech student in my second year of study driven to find and implement solutions to existing and prospective real world problems without compromising the end-user experience.
             When I'm not developing websites or engrossed deep into a Competitive Coding problem, you may find me contributing to Open Source, organizing Webinars and Workshops, playing guitar, and of course, learning something new everyday.
